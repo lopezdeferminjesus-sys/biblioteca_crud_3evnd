@@ -17,7 +17,7 @@ class libroDAD:
         registros = cursor.fetchall()
 
 
-
+        # Crear una lista de clase Libro
         libros = []
         for registro in registros:
             libro = Libros(
