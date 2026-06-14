@@ -15,3 +15,20 @@ class libroDAD:
         cursor.execute("SELECT * FROM libros")
         # Obtiene los rresultados 
         registros = cursor.fetchall()
+
+
+
+        libros = []
+        for registro in registros:
+            libro = Libros(
+                id=registro[0],
+                titulo=registro[1],
+                autor=registro[2],
+                isbn=registro[3],
+                disponible=registro[4] 
+            )
+            libros.append(libro)
+        # Cerrar la conexion
+        cursor.close()
+        conexion.close()
+        return  libros
