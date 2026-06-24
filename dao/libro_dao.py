@@ -12,7 +12,7 @@ class LibroDAO:
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        # Ejecuta la consulta
+        # Ejecuta la consulta almacenada (vista)
         cursor.execute("SELECT * FROM libro")
         # Obtiene los resultados
         registros = cursor.fetchall()
@@ -87,3 +87,14 @@ class LibroDAO:
         conexion.commit()
         cursor.close()
         conexion.close()
+
+    def obtener_ultimo_id():
+        conexion = Conexion.obtener_conexion()
+        cursor = conexion.cursor()
+
+        cursor.execute("SELECT id_libro FROM libro order by id_libro desc")
+        resultado = cursor.fetchone()
+        
+        cursor.close()
+        conexion.close()
+        return resultado

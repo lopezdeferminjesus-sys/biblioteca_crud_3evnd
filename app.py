@@ -68,9 +68,5 @@ def main():
         case 3: actualizar_libro(libro_dao)
         case 4: eliminar_libro(libro_dao)
 
-    
-
-
-    
 if __name__ == "__main__":
     main()
