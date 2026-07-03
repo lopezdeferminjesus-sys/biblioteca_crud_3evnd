@@ -1,5 +1,5 @@
 # DAO: Data Access Object
-# Es una clase que se encarga de acceder 
+# Es una clase que se encarga de acceder
 # a la base de datos y realizar las operaciones
 
 from database.conexion import Conexion
@@ -28,7 +28,7 @@ class LibroDAO:
             )
             libros.append(libro)
             
-        # Cerrar la conexión   
+        # Cerrar la conexión
         cursor.close()
         conexion.close()
         return libros
@@ -44,7 +44,7 @@ class LibroDAO:
         """
 
         cursor.execute(sql, (
-            libro.titulo, 
+            libro.titulo,
             libro.autor,
             libro.isbn,
             libro.disponible
@@ -67,8 +67,8 @@ class LibroDAO:
         """
 
         cursor.execute(sql, (
-            libro.titulo, 
-            libro.autor, 
+            libro.titulo,
+            libro.autor,
             libro.isbn,
             libro.disponible,
             libro.id
