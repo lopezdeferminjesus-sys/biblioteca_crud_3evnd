@@ -7,8 +7,8 @@ class Usuario:
     # Método constructor mejorado
     def __init__(self, id, matricula, nombre, carrera, correo, activo=True):
         self.id = id
-        self.matricula = matricula
         self.nombre = nombre
+        self.matricula = matricula
         self.carrera = carrera  # Recuerda que este ahora es un ID entero
         self.correo = correo
         self.activo = activo
