@@ -1,3 +1,6 @@
+import flet as ft
+
+from ui.main_window import main_window
 from dao.libro_dao import LibroDAO
 from dao.usuario_dao import UsuarioDAO
 from models.libro import Libro
@@ -181,26 +184,27 @@ def menu_usuarios():
 #                          FLUJO PRINCIPAL
 # =====================================================================
 
-def main():
-    while True:
-        print("\n======================================")
-        print("=== SISTEMA DE GESTIÓN UNIVERSITARIA ===")
-        print("======================================")
-        print("1. Administrar Módulo de Libros")
-        print("2. Administrar Módulo de Usuarios")
-        print("3. Salir completamente del sistema")
+#def main():
+    ft.app(target = main_window )
+    #while True:
+        # print("\n======================================")
+        # print("=== SISTEMA DE GESTIÓN UNIVERSITARIA ===")
+        # print("======================================")
+        # print("1. Administrar Módulo de Libros")
+        # print("2. Administrar Módulo de Usuarios")
+        # print("3. Salir completamente del sistema")
         
-        try:
-            opcion_principal = int(input("Selecciona un módulo (1-3): "))
-            match opcion_principal:
-                case 1: menu_libros()
-                case 2: menu_usuarios()
-                case 3:
-                    print("\nCerrando el sistema general de biblioteca. ¡Hasta luego!")
-                    break
-                case _: print("Opción inválida. Elige entre 1, 2 o 3.")
-        except ValueError:
-            print("Por favor, ingresa un número entero válido.")
+        # try:
+        #     opcion_principal = int(input("Selecciona un módulo (1-3): "))
+        #     match opcion_principal:
+        #         case 1: menu_libros()
+        #         case 2: menu_usuarios()
+        #         case 3:
+        #             print("\nCerrando el sistema general de biblioteca. ¡Hasta luego!")
+        #             break
+        #         case _: print("Opción inválida. Elige entre 1, 2 o 3.")
+        # except ValueError:
+        #     print("Por favor, ingresa un número entero válido.")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
