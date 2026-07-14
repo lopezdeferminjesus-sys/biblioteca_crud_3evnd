@@ -97,7 +97,7 @@ def menu_libros():
 
 def ver_todo_usuarios(usuario_dao):
     try:
-        usuarios = usuario_dao.obtener_usuarios()
+        usuarios = usuario_dao.unlock_usuarios() if hasattr(usuario_dao, 'unlock_usuarios') else usuario_dao.obtener_usuarios()
         print("\n=== Usuarios en la biblioteca ===")
         if len(usuarios) == 0:
             print("No hay usuarios registrados")
@@ -115,12 +115,10 @@ def insertar_usuario(usuario_dao):
         
         nombre = input("Escribe el nombre del usuario: ")
         matricula = input("Escribe la matrícula del usuario: ")
-        # Convertimos carrera a entero porque en tu BD es de tipo integer
         carrera = int(input("Escribe el ID numérico de la carrera: "))
         correo = input("Escribe el correo del usuario: ")
-        activo = True  # Por defecto se registra como activo
+        activo = True  
         
-        # Mandamos los parámetros ordenados según el constructor de tu modelo
         nuevo_usuario = Usuario(None, nombre, matricula, carrera, correo, activo)
         usuario_dao.insertar(nuevo_usuario)
         print("¡Usuario registrado con éxito!")
@@ -184,27 +182,5 @@ def menu_usuarios():
 #                          FLUJO PRINCIPAL
 # =====================================================================
 
-#def main():
-    ft.app(target = main_window )
-    #while True:
-        # print("\n======================================")
-        # print("=== SISTEMA DE GESTIÓN UNIVERSITARIA ===")
-        # print("======================================")
-        # print("1. Administrar Módulo de Libros")
-        # print("2. Administrar Módulo de Usuarios")
-        # print("3. Salir completamente del sistema")
-        
-        # try:
-        #     opcion_principal = int(input("Selecciona un módulo (1-3): "))
-        #     match opcion_principal:
-        #         case 1: menu_libros()
-        #         case 2: menu_usuarios()
-        #         case 3:
-        #             print("\nCerrando el sistema general de biblioteca. ¡Hasta luego!")
-        #             break
-        #         case _: print("Opción inválida. Elige entre 1, 2 o 3.")
-        # except ValueError:
-        #     print("Por favor, ingresa un número entero válido.")
-
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    ft.run(main_window)

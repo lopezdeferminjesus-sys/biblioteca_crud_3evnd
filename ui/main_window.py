@@ -1,27 +1,27 @@
 import flet as ft
 
 def main_window(page: ft.page):
-    #ferinir configureacion de la pagina principal
+    # Definir configuración de la página principal
     page.title = "Sistema de Gestión de Biblioteca"
     page.window_width = 1100
     page.window_height = 700
     page.padding = 0
     page.bgcolor = ft.Colors.BLUE_GREY_50
     
-    #Widget etiqueta o Text
+    # Widget etiqueta o Text
     titulo = ft.Text(
         "Sistema de Gestión de Biblioteca",
         size = 24,
-        weight = ft.Weight.BOLD
+        weight = ft.FontWeight.BOLD
     )
 
     subtitulo = ft.Text(
         "Seleccione una opción del menú",
-        size =16,
-        color = ft.Color.BLUE_GREY_600
+        size = 16,
+        color = ft.Colors.BLUE_GREY_600
     )
 
-    #CONTENEDOR CENTRAL
+    # CONTENEDOR CENTRAL
     contenido = ft.Container(
         content = ft.Column(
             controls = [
@@ -34,59 +34,60 @@ def main_window(page: ft.page):
         expand = True
     )
 
-    #menu lateral
+    # Menú lateral
     menu_lateral = ft.Container(
         width = 220,
-        bgcolor = ft.Color.BLUE_GREY_900,
-        padding = 20
+        bgcolor = ft.Colors.BLUE_GREY_900,
+        padding = 20,
         content = ft.Column(
-            control = [
-                ft.text(
+            controls = [
+                ft.Text(
                     "Biblioteca",
                     size = 20,
-                    weight = ft.FontWeigh.BOLD,
-                    color = ft.Colors.WITHE
+                    weight = ft.FontWeight.BOLD,
+                    color = ft.Colors.WHITE
                 ),
                 ft.Text(
                     "Sistema de Gestión",
                     size = 12,
                     color = ft.Colors.BLUE_GREY_100
                 ),
-                ft.Divider(color = ft.Colors.BLUE_GLEY_700)
-                #BOTON
+                ft.Divider(color = ft.Colors.BLUE_GREY_700),
+                # BOTONES (con texto posicional para evitar errores de inicialización)
                 ft.ElevatedButton(
-                    text = "Libros",
+                    "Libros",
                     icon = ft.Icons.BOOK,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Usuarios",
+                    "Usuarios",
                     icon = ft.Icons.PERSON,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Préstamos",
+                    "Préstamos",
                     icon = ft.Icons.SWAP_HORIZ,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Devoluciones",
+                    "Devoluciones",
                     icon = ft.Icons.KEYBOARD_RETURN,
                     width = 180
                 ),
+                #Agregar mas botones
             ],
             spacing = 15
         )
     )
 
-    #Definición del layout de la pagina
+    # Definición del layout de la página
     layout = ft.Row(
         controls = [
-            manu_lateral,
+            menu_lateral,
             contenido
         ],
         expand = True
     )
 
-    # Agegar el layout a la pagina
+    # Agregar el layout a la página
     page.add(layout)
