@@ -1,26 +1,21 @@
 # DAO: Data Access Object
-# Es una clase que se encarga de acceder
-# a la base de datos y realizar las operaciones
-
 from database.conexion import Conexion
 from models.libro import Libro
 
 class LibroDAO:
 
-    # Select * from libro ordenado por id_libro
+    # Obtener todos los libros ordenados por ID
     def obtener_libros(self):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        # Ejecuta la consulta seleccionando explícitamente id_libro
         cursor.execute("SELECT id_libro, titulo, autor, isbn, disponible FROM libro ORDER BY id_libro")
         registros = cursor.fetchall()
 
-        # Crear una lista de clase Libro
         libros = []
         for registro in registros:
             libro = Libro(
-                id=registro[0],  # El id_libro de la BD se guarda en el atributo id del objeto
+                id=registro[0],  
                 titulo=registro[1],
                 autor=registro[2],
                 isbn=registro[3],
@@ -28,12 +23,11 @@ class LibroDAO:
             )
             libros.append(libro)
             
-        # Cerrar la conexión
         cursor.close()
         conexion.close()
         return libros
     
-    # Insert
+    # Insertar un nuevo libro
     def insertar(self, libro):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
@@ -54,7 +48,7 @@ class LibroDAO:
         cursor.close()
         conexion.close()
 
-    # Update
+    # Actualizar un libro existente
     def actualizar(self, libro):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
@@ -78,12 +72,11 @@ class LibroDAO:
         cursor.close()
         conexion.close()
 
-    # Delete
+    # Eliminar un libro por ID
     def eliminar(self, id):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        # Se incluye la coma (id,) para pasarlo correctamente como una tupla válida a execute
         cursor.execute("DELETE FROM libro WHERE id_libro = %s", (id,))
         
         conexion.commit()
